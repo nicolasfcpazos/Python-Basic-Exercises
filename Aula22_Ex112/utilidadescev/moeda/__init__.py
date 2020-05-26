@@ -1,0 +1,75 @@
+
+def aumentar(preço=0, taxa=0, formato=False):
+    """
+    -> Calcula o percentual de aumento de um valor.
+    :param preço: Valor a ser calculado.
+    :param taxa: Percentual a ser aumentado no valor.
+    :param formato: Se formata (opcional) o valor ou não.
+    :return: Retona o valor aumentado.
+    """
+    res = preço + ((preço * taxa) / 100)
+    return res if formato is False else moeda(res)
+
+
+def diminuir(preço=0, taxa=0, formato=False):
+    """
+    -> Calcula o percentual de redução de um valor.
+    :param preço: Valor a ser calculado.
+    :param taxa: Percentual a ser reduzido no valor.
+    :param formato: Se formata (opcional) o valor ou não.
+    :return: Retorna o valor reduzido.
+    """
+    res = preço - ((preço * taxa) / 100)
+    return res if formato is False else moeda(res)
+
+
+def dobro(preço=0, formato=False):
+    """
+    -> Calcula o dobro de um número.
+    :param preço: Valor a ser calculado.
+    :param formato: Se formata (opcional) o valor ou não.
+    :return:  Retorna o dobro do número.
+    """
+    res = preço * 2
+    return res if formato is False else moeda(res)
+
+
+def metade(preço=0, formato=False):
+    """
+    -> Calcula a metade de um número.
+    :param preço: Valor a ser calculado.
+    :param formato: Se formata (opcional) o valor ou não.
+    :return: Retorna a metade do número.
+    """
+    res = preço / 2
+    return res if not formato else moeda(res)
+
+
+def moeda(preço=0, moeda='R$'):
+    """
+    -> Verifica se o número digitado é um valor e formata o mesmo
+    :param preço: Número a ser verificado.
+    :param moeda: Verifica (opcional) se o número é um valor e formata o mesmo.
+    :return: Retorna o número formatado como moeda (formato BR com vírgula).
+    """
+    return f'{moeda} {preço:.2f}'.replace('.', ',')
+
+
+def resumo(preço=0, taxaa=10, taxar=5, formato=False):
+    """
+    -> Calcula o dobro, metade, aumento e redução de um produto.
+    :param preço: O preço do produto
+    :param taxaa: O preço do produto aumento por uma taxa.
+    :param taxar: O preço do produto reduzido por uma taxa.
+    :param formato: Verifica (opcional) se o número é um valor e formata o mesmo.
+    :return: Retorma o resumo do valor informado.
+    """
+    print('-' * 30)
+    print('RESUMO DO VALOR'.center(30))
+    print('-' * 30)
+    print(f'Preço analisado: \t{moeda(preço)}')
+    print(f'Dobro do preço: \t{dobro(preço, True)}')
+    print(f'Metade do preço: \t{metade(preço, True)}')
+    print(f'{taxaa}% de aumento: \t{aumentar(preço, taxaa, True)}')
+    print(f'{taxar}% de redução: \t{diminuir(preço, taxar, True)}')
+    print('-' * 30)
